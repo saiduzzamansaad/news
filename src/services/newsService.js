@@ -1,10 +1,10 @@
 import axios from 'axios'
 
 const API_KEY = import.meta.env.VITE_NEWS_API_KEY
-const BASE_URL = 'https://newsapi.org/v2'
+const API_KEY1 = import.meta.env.VITE_NEWS_API_KEY1
 
 const buildUrl = (endpoint, params = {}) => {
-  const url = new URL(`${BASE_URL}${endpoint}`)
+  const url = new URL(`${API_KEY1}${endpoint}`)
   url.searchParams.append('apiKey', API_KEY)
   Object.keys(params).forEach(key => 
     params[key] && url.searchParams.append(key, params[key])
