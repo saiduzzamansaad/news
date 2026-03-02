@@ -2,37 +2,39 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useNews } from '../hooks/useNews'
 import NewsGrid from '../components/news/NewsGrid'
-import CategoryFilter from '../components/filters/CategoryFilter'
 import CountrySelector from '../components/filters/CountrySelector'
 import Pagination from '../components/ui/Pagination'
 import Loader from '../components/ui/Loader'
 import ErrorMessage from '../components/ui/ErrorMessage'
 
-const CategoryPage = () => {
-  const { category } = useParams()
-  const { articles, loading, error, totalResults, currentPage, pageSize, fetchByCategory } = useNews()
-  const [country, setCountry] = useState('us')
+const CountryPage = () => {
+  const { countryCode } = useParams()
+  const [country, setCountry] = useState(countryCode || 'us')
+  const { articles, loading, error, totalResults, currentPage, pageSize, fetchTopHeadlines } = useNews()
 
   useEffect(() => {
-    fetchByCategory(category, country, 1)
-  }, [category, country])
+    fetchTopHeadlines(country, 1)
+  }, [country])
+
+  const handleCountryChange = (newCountry) => {
+    setCountry(newCountry)
+    // Optionally update URL
+    window.history.pushState(null, '', `/country/${newCountry}`)
+  }
 
   const handlePageChange = (page) => {
-    fetchByCategory(category, country, page)
+    fetchTopHeadlines(country, page)
     window.scrollTo({ top: 0 })
   }
 
   if (loading && articles.length === 0) return <Loader />
-  if (error) return <ErrorMessage message={error} retry={() => fetchByCategory(category, country, 1)} />
+  if (error) return <ErrorMessage message={error} retry={() => fetchTopHeadlines(country, 1)} />
 
   return (
     <div>
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold capitalize">{category} News</h1>
-        <div className="flex gap-2">
-          <CategoryFilter selected={category} />
-          <CountrySelector selected={country} onChange={setCountry} />
-        </div>
+        <h1 className="text-2xl font-bold">News from {country.toUpperCase()}</h1>
+        <CountrySelector selected={country} onChange={handleCountryChange} />
       </div>
       <NewsGrid articles={articles} />
       <Pagination
@@ -44,4 +46,4 @@ const CategoryPage = () => {
   )
 }
 
-export default CategoryPage
+export default CountryPage

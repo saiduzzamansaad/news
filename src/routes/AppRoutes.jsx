@@ -4,6 +4,7 @@ import CategoryPage from '../pages/CategoryPage'
 import SearchPage from '../pages/SearchPage'
 import NewsDetails from '../pages/NewsDetails'
 import BookmarkPage from '../pages/BookmarkPage'
+import CountryPage from '../pages/CountryPage'
 import NotFound from '../pages/NotFound'
 
 const AppRoutes = () => {
@@ -14,6 +15,7 @@ const AppRoutes = () => {
       <Route path="/search" element={<SearchPage />} />
       <Route path="/news/:id" element={<NewsDetails />} />
       <Route path="/bookmarks" element={<BookmarkPage />} />
+      <Route path="/country/:countryCode" element={<CountryPage />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   )

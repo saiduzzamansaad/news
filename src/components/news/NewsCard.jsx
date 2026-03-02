@@ -56,7 +56,6 @@ const NewsCard = ({ article, isFeatured = false }) => {
           )}
           <div className="flex justify-between items-center">
             <Badge>{article.source?.name}</Badge>
-            {/* Changed anchor to button to avoid nested links */}
             <button
               onClick={handleExternalClick}
               className="text-blue-600 hover:text-blue-800 text-sm inline-flex items-center"

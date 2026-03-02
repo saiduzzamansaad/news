@@ -8,7 +8,6 @@ export const useBookmarks = () => useContext(BookmarkContext)
 export const BookmarkProvider = ({ children }) => {
   const [bookmarks, setBookmarks] = useLocalStorage('bookmarks', [])
 
-  // Ensure bookmarks is always an array
   useEffect(() => {
     if (!Array.isArray(bookmarks)) {
       console.warn('Bookmarks was not an array, resetting to empty array')
@@ -17,7 +16,6 @@ export const BookmarkProvider = ({ children }) => {
   }, [bookmarks, setBookmarks])
 
   const addBookmark = (article) => {
-    // Guard against non-array bookmarks
     const current = Array.isArray(bookmarks) ? bookmarks : []
     if (!current.some(b => b.url === article.url)) {
       setBookmarks([...current, article])

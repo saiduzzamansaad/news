@@ -6,6 +6,8 @@ import { Bookmark, BookmarkCheck, ExternalLink, ArrowLeft, Share2 } from 'lucide
 import Button from '../components/ui/Button'
 import Badge from '../components/ui/Badge'
 
+
+
 const NewsDetails = () => {
   const location = useLocation()
   const navigate = useNavigate()
