@@ -23,7 +23,7 @@ const Navbar = () => {
           {/* Logo with Hover Animation */}
           <Link to="/" className="flex items-center space-x-2 group active:scale-95 transition-transform">
             <div className="bg-blue-600 p-1.5 rounded-lg shadow-lg group-hover:rotate-12 transition-transform">
-              <img src="/logo.png" alt="Logo" className="h-6 w-6 invert brightness-0" />
+              <img src="" alt="Logo" className="h-6 w-6 invert brightness-0" />
             </div>
             <span className="font-extrabold text-xl font-sans tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
               NewsPortal
